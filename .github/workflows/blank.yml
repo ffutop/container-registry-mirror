@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  ffdit:
+    if: github.event.label.name == 'ffdit'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Runs a single command using the runners shell
+      - name: Run ffdit script
+        run: sh ffdit -f -t 
