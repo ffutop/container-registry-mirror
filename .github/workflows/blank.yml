@@ -9,7 +9,6 @@ on:
 
 jobs:
   ffdit:
-    if: github.event.label.name == 'ffdit'
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -25,7 +24,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: print github event
-        run: echo ${{ github.event }}
+        run: echo ${{ github.event.issues }}
 
       # Runs a single command using the runners shell
       - name: Run ffdit script
