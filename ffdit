@@ -66,11 +66,13 @@ parse_params() {
     -v | --verbose) set -x ;;
     --no-color) NO_COLOR=1 ;;
     -f | --from)
-      fromImageTag="${2-}"
+      [[ $# -le 1 ]] && die "Missing required parameter: [fromImage:tag]"
+      fromImageTag="${2-}" 
       shift
       ;;
     -t | --to)
-      toImageTag="${2-}"
+      [[ $# -le 1 ]] && die "Missing required parameter: [toImage:tag]"
+      toImageTag="${2-}" 
       shift
       ;;
     -?*) die "Unknown option: $1" ;;
@@ -79,12 +81,9 @@ parse_params() {
     shift
   done
 
-  args=("$@")
-
   # check required params and arguments
-  [[ -z "${fromImageTag-}" ]] && die "Missing required parameter: [fromImage:tag]"
-  [[ -z "${toImageTag-}" ]] && die "Missing required parameter: [toImage:tag]"
-  [[ ${#args[@]} -eq 0 ]] && die "Missing script arguments"
+  [[ -z ${fromImageTag-} ]] && die "Missing required parameter: [fromImage:tag]"
+  [[ -z ${toImageTag-} ]] && die "Missing required parameter: [toImage:tag]"
 
   return 0
 }
@@ -94,8 +93,8 @@ setup_colors
 
 # script logic here
 
-msg "${RED}Read parameters:${NOFORMAT}"
-msg "- flag: ${flag}"
-msg "- param: ${param}"
-msg "- arguments: ${args[*]-}"
-
+msg "${RED}Start Transfer:${NOFORMAT}"
+docker pull ${fromImageTag}
+docker tag ${fromImageTag} ${toImageTag}
+doker push ${toImageTag}
+msg "${GREEN}Transfer Success!"
