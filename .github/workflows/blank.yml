@@ -10,6 +10,7 @@ on:
 jobs:
   ffdit:
     runs-on: ubuntu-latest
+    if: ${{ startWith(github.event.issue.title, "ffdit") }}
     permissions:
       issues: write
 
