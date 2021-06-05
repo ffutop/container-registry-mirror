@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Docker Image Transfer
 
 # Controls when the action will run. 
 on:
@@ -10,7 +10,7 @@ on:
 jobs:
   ffdit:
     runs-on: ubuntu-latest
-    if: ${{ startWith(github.event.issue.title, "ffdit") }}
+    if: ${{ startsWith(github.event.issue.title, "ffdit") }}
     permissions:
       issues: write
 
