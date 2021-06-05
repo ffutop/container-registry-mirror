@@ -6,6 +6,7 @@ labels: ffdit
 assignees: ''
 
 ---
-
-fromImageTag: [From link of specific docker image with tag, Like k8s.gcr.io/coredns:1.6.5]
-toImageTag: [To link of specific docker image with tag, Like ffutop/gcr_mirror_coredns:1.6.5]
+{
+  "fromImageTag": "k8s.gcr.io/coredns:1.6.5",
+  "toImageTag": "ffutop/gcr_mirror_coredns:1.6.5"
+}
