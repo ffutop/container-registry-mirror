@@ -25,9 +25,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: print github event
-        env: 
-         PROPOSAL: ${{ github.event.issue.body }}'
-        run: echo "${PROPOSAL}" > proposal.json
-
+        run: |
+          cat << EOF > proposal.json
+          ${{ github.event.issue.body }}
+          EOF
       - name: startup ffdit 
         run: sh startup -f proposal.json
