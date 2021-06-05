@@ -74,7 +74,8 @@ setup_colors
 
 # script logic here
 
-fromImageTag=$(cat ${file} | tools/jq -r .fromImageTag)
-toImageTag=$(cat ${file} | tools/jq -r .toImageTag)
+imageFrom=$(cat ${file} | tools/jq -r .image.from)
+imageTo=$(cat ${file} | tools/jq -r .image.to)
+imageTag=$(cat ${file} | tools/jq -r .image.tag)
 
-tools/ffdit -f ${fromImageTag} -t ${toImageTag}
+tools/ffdit -f "${imageFrom}:${imageTag}" -t "${imageTo}:${imageTag}"
