@@ -25,8 +25,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: print github event
-        run: echo "${{ toJSON(github) }}"
+        run: echo ${{ github.event.issue.body }} > proposal.json
 
-      # Runs a single command using the runners shell
-      - name: Run ffdit script
-        run: sh ffdit -f -t 
+      - name: startup ffdit 
+        run: sh startup -f proposal.json
