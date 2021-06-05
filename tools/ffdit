@@ -96,5 +96,5 @@ setup_colors
 msg "${RED}Start Transfer:${NOFORMAT}"
 docker pull ${fromImageTag}
 docker tag ${fromImageTag} ${toImageTag}
-doker push ${toImageTag}
+docker push ${toImageTag}
 msg "${GREEN}Transfer Success!"
