@@ -77,4 +77,4 @@ setup_colors
 fromImageTag=$(cat ${file} | tools/jq -r .fromImageTag)
 toImageTag=$(cat ${file} | tools/jq -r .toImageTag)
 
-tools/ffdit -v -f ${fromImageTag} -t ${toImageTag}
+tools/ffdit -f ${fromImageTag} -t ${toImageTag}
