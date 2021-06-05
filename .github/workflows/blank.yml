@@ -31,3 +31,15 @@ jobs:
           EOF
       - name: startup ffdit 
         run: ./startup -f proposal.json
+        
+      - name: close issue
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.update({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "closed"
+            })
