@@ -30,4 +30,4 @@ jobs:
           ${{ github.event.issue.body }}
           EOF
       - name: startup ffdit 
-        run: sh startup -f proposal.json
+        run: ./startup -f proposal.json
