@@ -82,8 +82,9 @@ tools/ffdit -f "${imageFrom}:${imageTag}" -t "${imageTo}:${imageTag}"
 
 if [[ $? -eq 0 ]]
 then
-    echo "FFDIT: Execute Success!"
-    echo "Docker Pull Command: docker pull ${imageTo}:${imageTag}"
+    echo "FFDIT: Execute Success!" >> comments
+    echo "Docker Pull Command: docker pull ${imageTo}:${imageTag}" >> comments
+elif 
+    echo "FFIDT: Execute Failed!" >> comments
+    echo "Please follow issue template and check your issue"
 fi
-
-

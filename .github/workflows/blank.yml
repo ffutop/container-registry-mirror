@@ -33,8 +33,9 @@ jobs:
           
       - name: Core work - ffdit 
         run: |
+          ./startup -f proposal.json
           echo 'FFDIT_OUTPUT<<EOF' >> $GITHUB_ENV
-          ./startup -f proposal.json >> $GITHUB_ENV
+          cat comments >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
       - name: create issue comment
